@@ -1,6 +1,6 @@
 #![warn(missing_docs)]
 
-//! 会遍历当前目录下的所有文件, 然后使用 [AES Crypt](https://www.aescrypt.com/) 对其进行加密, 并拷贝到指定的目录下.
+//! 会遍历当前目录下的所有文件, 然后使用 [AES Crypt](https://www.aescrypt.com/) 对其进行加密.
 
 use std::env;
 use std::process::Command;
