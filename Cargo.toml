@@ -1,0 +1,11 @@
+[package]
+name = "aes_crypt"
+version = "0.1.0"
+edition = "2021"
+authors = ["ifeisier <ifeisier@hotmail.com>"]
+description = "该程序会调用 [AES Crypt](https://www.aescrypt.com/)"
+repository = "https://github.com/ifeisier/aes_crypt"
+license = "MIT"
+
+[dependencies]
+walkdir = "2.5.0"
