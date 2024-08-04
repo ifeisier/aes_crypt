@@ -31,13 +31,13 @@ fn main() {
 fn encrypt(pass_word: String) {
     let file_format = vec!["rs", "java", "py"];
     let command = |f: String| {
-        let _ = Command::new("./aescrypt")
+        let output = Command::new("./aescrypt")
             .arg("-p")
             .arg(pass_word.clone())
             .arg("-e")
             .arg(f)
             .output();
-        // println!("{:?}", output);
+        println!("{:?}", output);
     };
     iteration(&file_format, command);
 }
@@ -47,13 +47,13 @@ fn encrypt(pass_word: String) {
 fn decrypt(pass_word: String) {
     let file_format = vec!["aes"];
     let command = |f: String| {
-        let _ = Command::new("./aescrypt")
+        let output = Command::new("./aescrypt")
             .arg("-p")
             .arg(pass_word.clone())
             .arg("-d")
             .arg(f)
             .output();
-        // println!("{:?}", output);
+        println!("{:?}", output);
     };
     iteration(&file_format, command);
 }
