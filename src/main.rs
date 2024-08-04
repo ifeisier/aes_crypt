@@ -13,22 +13,27 @@ use walkdir::WalkDir;
 const PASS_WORD: &str = "6ANTEWJ^&^eYWaE%KbQX!pC2tGW7kzYbYBv#54Kj#65y9m$txXRAKzCWe$$az*Jf";
 
 fn main() {
+    let pass_word = match env::var("PASS_WORD") {
+        Ok(v) => v,
+        Err(_) => PASS_WORD.to_owned(),
+    };
+
     let args: Vec<String> = env::args().collect();
     if args.len() < 2 || args[1] == "-d" {
-        decrypt();
+        decrypt(pass_word);
     } else if args[1] == "-e" {
-        encrypt();
+        encrypt(pass_word);
     }
 }
 
 /// 加密
 #[allow(dead_code)]
-fn encrypt() {
+fn encrypt(pass_word: String) {
     let file_format = vec!["rs", "java", "py"];
     let command = |f: String| {
         let _ = Command::new("./aescrypt")
             .arg("-p")
-            .arg(PASS_WORD)
+            .arg(pass_word.clone())
             .arg("-e")
             .arg(f)
             .output();
@@ -39,12 +44,12 @@ fn encrypt() {
 
 /// 解密
 #[allow(dead_code)]
-fn decrypt() {
+fn decrypt(pass_word: String) {
     let file_format = vec!["aes"];
     let command = |f: String| {
         let _ = Command::new("./aescrypt")
             .arg("-p")
-            .arg(PASS_WORD)
+            .arg(pass_word.clone())
             .arg("-d")
             .arg(f)
             .output();
