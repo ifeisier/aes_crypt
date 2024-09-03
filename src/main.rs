@@ -63,7 +63,7 @@ fn iteration<F>(file_format: &Vec<&str>, command: F)
 where
     F: Fn(String),
 {
-    for entry in WalkDir::new(".") {
+    for entry in WalkDir::new("../") {
         let entry = match entry {
             Ok(e) => e,
             Err(err) => {
@@ -79,6 +79,7 @@ where
 
         if let Some(f) = path.extension().and_then(std::ffi::OsStr::to_str) {
             if file_format.contains(&f) {
+                println!("{:?}", path.display().to_string());
                 command(path.display().to_string());
             }
         }
